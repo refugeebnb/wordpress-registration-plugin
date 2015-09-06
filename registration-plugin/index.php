@@ -130,35 +130,34 @@ class RefugeeBnb{
 	
 	public static function get_client_ip() {
     	$ip_addresses = array();
-	$ip_elements = array(
-		'HTTP_X_FORWARDED_FOR', 'HTTP_FORWARDED_FOR',
-		'HTTP_X_FORWARDED', 'HTTP_FORWARDED',
-		'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_CLUSTER_CLIENT_IP',
-		'HTTP_X_CLIENT_IP', 'HTTP_CLIENT_IP',
-		'REMOTE_ADDR'
-	);
-	foreach ( $ip_elements as $element ) {
-		if(isset($_SERVER[$element])) {
-			if ( !is_string($_SERVER[$element]) ) {
-				// Log the value somehow, to improve the script!
-				continue;
-			}
-			$address_list = explode(',', $_SERVER[$element]);
-			$address_list = array_map('trim', $address_list);
-			// Not using array_merge in order to preserve order
-			foreach ( $address_list as $x ) {
-				$ip_addresses[] = $x;
+		$ip_elements = array(
+			'HTTP_X_FORWARDED_FOR', 'HTTP_FORWARDED_FOR',
+			'HTTP_X_FORWARDED', 'HTTP_FORWARDED',
+			'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_CLUSTER_CLIENT_IP',
+			'HTTP_X_CLIENT_IP', 'HTTP_CLIENT_IP',
+			'REMOTE_ADDR'
+		);
+		foreach ( $ip_elements as $element ) {
+			if(isset($_SERVER[$element])) {
+				if ( !is_string($_SERVER[$element]) ) {
+					// Log the value somehow, to improve the script!
+					continue;
+				}
+				$address_list = explode(',', $_SERVER[$element]);
+				$address_list = array_map('trim', $address_list);
+				// Not using array_merge in order to preserve order
+				foreach ( $address_list as $x ) {
+					$ip_addresses[] = $x;
+				}
 			}
 		}
-	}
-	if ( count($ip_addresses)==0 ) {
-		return FALSE;
-	} elseif ( $force_string===TRUE || ( $force_string===NULL && count($ip_addresses)==1 ) ) {
-		return $ip_addresses[0];
-	} else {
-		return $ip_addresses;
-	}
-
+		if ( count($ip_addresses)==0 ) {
+			return FALSE;
+		} elseif ( $force_string===TRUE || ( $force_string===NULL && count($ip_addresses)==1 ) ) {
+			return $ip_addresses[0];
+		} else {
+			return $ip_addresses;
+		}
 	}
 	
 	/**
@@ -201,6 +200,13 @@ class RefugeeBnb{
 		{
 			wp_enqueue_style('refbnb-plugin-setup-page');
 			wp_enqueue_script('refbnb-plugin-lang-page');
+		}
+		/**
+		 * Shelter Page and Others
+		 */
+		if($hook == "refugee-plugin_page_RefugeeBnb-shelter" || $hook == 'refugee-plugin_page_RefugeeBnb-others')
+		{
+			wp_enqueue_style('refbnb-plugin-setup-page');
 		}
 		/**
 		 * Frontend
@@ -266,7 +272,8 @@ class RefugeeBnb{
 	 */
 	public function shelterPage()
 	{
-		$options = $this->option; 
+		$options = $this->option;
+		$users = get_users(['role'=>self::SHELTER_ROLE]);
 		include_once "page/page-shelter.php";
 	}
 	
@@ -280,6 +287,7 @@ class RefugeeBnb{
 	public function othersPage()
 	{
 		$options = $this->option; 
+		$users = get_users(['role'=>self::OTHER_ROLE]);
 		include_once "page/page-others.php";
 	}
 	

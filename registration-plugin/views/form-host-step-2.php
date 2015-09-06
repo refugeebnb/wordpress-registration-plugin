@@ -28,8 +28,8 @@
 								</td>
 								<td>
 									<input type="radio" value="child" name="<?= RefugeeBnb::NAME?>[Shelter][single-type][:x]"/> <span data-fragment="21">Child</span><br />
-									<input type="radio" value="adult" name="<?= RefugeeBnb::NAME?>[Shelter][single-type][:x]"/> <span data-fragment="22">Adult<br />
-									<input type="radio" value="both" name="<?= RefugeeBnb::NAME?>[Shelter][single-type][:x]" checked/> <span data-fragment="29">Both
+									<input type="radio" value="adult" name="<?= RefugeeBnb::NAME?>[Shelter][single-type][:x]"/> <span data-fragment="22">Adult</span><br />
+									<input type="radio" value="both" name="<?= RefugeeBnb::NAME?>[Shelter][single-type][:x]" checked/> <span data-fragment="29">Both</span>
 								</td>
 							</tr>
 							<tr>

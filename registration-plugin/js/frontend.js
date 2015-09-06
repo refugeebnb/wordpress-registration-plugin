@@ -160,7 +160,8 @@ jQuery(document).ready(function($){
 				if(!data.success)
 				{
 					renderErrors($shelterDetails,data.errors,"RefugeeBnb[Shelter]");
-					$shelterDetails.find(".console").html("<div class='alert alert-danger'>"+data.message+"</div>");
+					if(typeof data.message !=="undefined")
+						$shelterDetails.find(".console").html("<div class='alert alert-danger'>"+data.message+"</div>");
 				}	
 				else
 				{

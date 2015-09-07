@@ -417,7 +417,7 @@ class RefugeeBnb{
 		if(empty($address))
 			$errors['address'][] = '<span data-fragment="26">Address cannot be empty</span>';
 		$rooms = trim($fields['rooms']);
-		if(!is_numeric($rooms) || $rooms <0 || $rooms > 5)
+		if(!is_numeric($rooms) || $rooms <0 || $rooms > 10)
 			$errors['rooms'][] = '<span data-fragment="30">Invalid Room</span>';
 		else{
 			$roomData = [];

@@ -23,7 +23,7 @@
 						<tbody>
 							<tr>
 								<td>Single</td>
-								<td><input type="number" class='form-control' min="1" max="5" step="1" 
+								<td><input type="number" class='form-control' min="1" max="10" step="1" 
 									name="<?= RefugeeBnb::NAME?>[Shelter][single][:x]"/>
 								</td>
 								<td>
@@ -84,13 +84,13 @@
 				<div class="col-xs-6">
 					<div class="form-group">
 						<input type="number" class='form-control' name="<?= RefugeeBnb::NAME?>[Shelter][adults]"
-							placeholder="Adults" data-fragment="21"/>
+							placeholder="Adults" data-fragment="21" min="0"/>
 						<div class="hint"></div>
 					</div>
 				</div>
 				<div class="col-xs-6">
 					<input type="number" class='form-control' name="<?= RefugeeBnb::NAME?>[Shelter][children]"
-							placeholder="Children" data-fragment="22"/>
+							placeholder="Children" data-fragment="22" min="0"/>
 						<div class="hint"></div>
 				</div>
 			</div>
